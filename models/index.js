@@ -2,20 +2,19 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 const pool = new Pool({
-  user: process.env.DB_USERNAME || "postgres",
-  host: process.env.DB_HOST || "127.0.0.1",
-  database: process.env.DB_NAME || "lista_tarefas",
-  password: process.env.DB_PASSWORD || "postgres",
-  port: process.env.DB_PORT || 5432,
+  connectionString: process.env.DATABASE_URL, // Lê a URL do banco de dados da variável de ambiente
+  ssl: process.env.DATABASE_URL.includes("localhost")
+    ? false // Sem SSL para localhost
+    : { rejectUnauthorized: false }, // Necessário para conexões seguras no Render
 });
 
 (async () => {
   try {
     const client = await pool.connect();
-    console.log("Conexão com o banco de dados estabelecida com sucesso.");
+    console.log("Conexão com o banco de dados foi estabelecida com sucesso.");
     client.release();
   } catch (error) {
-    console.error("Não foi possível conectar ao banco de dados:", error);
+    console.error("Erro ao conectar ao banco de dados:", error.message);
     process.exit(1);
   }
 })();

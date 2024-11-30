@@ -1,6 +1,4 @@
-CREATE DATABASE lista_tarefas;
 
-\c lista_tarefas;
 
 CREATE TABLE tarefas (
     id SERIAL PRIMARY KEY,

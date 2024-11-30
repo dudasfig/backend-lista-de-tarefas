@@ -1,32 +1,30 @@
 const fs = require("fs");
-const path = require("path");
 const { Client } = require("pg");
+require("dotenv").config();
 
-const config = {
-  user: "postgres",
-  host: "localhost",
-  password: "postgres",
-  port: 5432,
-};
+const client = new Client({
+  connectionString:
+    "postgresql://postgress:c0Gqm6CdULoIZahXR9KBIrAdZdDh3o45@dpg-ct5oh6e8ii6s73dklgn0-a.oregon-postgres.render.com/lista_tarefas",
+  ssl: {
+    rejectUnauthorized: false, // Desativa a verificação do certificado SSL
+  },
+});
 
-const sqlFilePath = path.join(__dirname, "database", "create_database.sql");
+const sqlFilePath = "../database/create_database.sql";
+// Certifique-se de que o arquivo SQL está nesse caminho
 
 const createDatabase = async () => {
-  const client = new Client(config);
-
   try {
-    console.log("Conectando ao PostgreSQL...");
+    console.log("Conectando ao banco...");
     await client.connect();
 
-    console.log("Lendo o script SQL...");
-    const sql = fs.readFileSync(sqlFilePath, "utf-8");
-
     console.log("Executando o script SQL...");
+    const sql = fs.readFileSync(sqlFilePath, "utf-8");
     await client.query(sql);
 
-    console.log("Banco de dados e tabela criados com sucesso!");
+    console.log("Tabelas criadas com sucesso!");
   } catch (error) {
-    console.error("Erro ao criar o banco de dados:", error.message);
+    console.error("Erro ao criar tabelas:", error.message);
   } finally {
     await client.end();
     console.log("Conexão encerrada.");
