@@ -9,6 +9,12 @@ app.use(bodyParser.json());
 
 const tarefasRoutes = require("./api/tarefas");
 
+// Rota raiz para verificar se o servidor está funcionando
+app.get("/", (req, res) => {
+  res.send("Backend Lista de Tarefas está funcionando!");
+});
+
+// Rotas de tarefas
 app.use("/tarefas", tarefasRoutes);
 
 const PORT = process.env.PORT || 3001;
