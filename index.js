@@ -4,7 +4,11 @@ const bodyParser = require("body-parser");
 const pool = require("./models"); // Importando a conexão configurada no models/index.js
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://<sua-url-frontend>.netlify.app", // Substitua pela URL do frontend
+  })
+);
 app.use(bodyParser.json());
 
 const tarefasRoutes = require("./api/tarefas");

@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const client = new Client({
   connectionString:
-    "postgresql://postgress:c0Gqm6CdULoIZahXR9KBIrAdZdDh3o45@dpg-ct5oh6e8ii6s73dklgn0-a.oregon-postgres.render.com/lista_tarefas",
+    "postgresql://postgress:c0Gqm6CdULoIZahXR9KBIrAdZdDh3o45@dpg-ct5oh6e8ii6s73dklgn0-a/lista_tarefas",
   ssl: {
     rejectUnauthorized: false, // Desativa a verificação do certificado SSL
   },
