@@ -6,9 +6,10 @@ const pool = require("./models"); // Importando a conexão configurada no models
 const app = express();
 app.use(
   cors({
-    origin: "https://lista-de-tarefas-eight-neon.vercel.app/", // Substitua pela URL do frontend
+    origin: "*", // Permite qualquer origem (não recomendado em produção)
   })
 );
+
 app.use(bodyParser.json());
 
 const tarefasRoutes = require("./api/tarefas");
