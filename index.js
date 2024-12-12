@@ -6,7 +6,7 @@ const pool = require("./models"); // Importando a conexão configurada no models
 const app = express();
 app.use(
   cors({
-    origin: "https://<sua-url-frontend>.netlify.app", // Substitua pela URL do frontend
+    origin: "https://lista-de-tarefas-eight-neon.vercel.app/", // Substitua pela URL do frontend
   })
 );
 app.use(bodyParser.json());
